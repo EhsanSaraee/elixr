@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
-import { menuLinks } from '../Data/menuLinks';
 import { Button } from '../StyledComponents/Button';
 import { FaBars } from 'react-icons/fa';
+import { menuData } from '../Data/menuData';
 
 const Navbar = () => {
    return (
@@ -10,7 +10,7 @@ const Navbar = () => {
          <Logo to="/">ELIXR</Logo>
          <MenuBars />
          <NavMenu>
-            {menuLinks?.map((item, index) => (
+            {menuData?.map((item, index) => (
                <NavMenuLink key={index} to={item.link}>
                   {item.title}
                </NavMenuLink>
