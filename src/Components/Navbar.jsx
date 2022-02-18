@@ -17,7 +17,7 @@ const Navbar = () => {
             ))}
          </NavMenu>
          <NavBtn>
-            <Button primary='true' to="/contact">
+            <Button primary="true" to="/contact">
                Contact Us
             </Button>
          </NavBtn>

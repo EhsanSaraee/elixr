@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { menuData } from '../Data/menuData';
 import { Button } from '../StyledComponents/Button';
+import { FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Dropdown = () => {
    return (
@@ -9,13 +11,13 @@ const Dropdown = () => {
             <CloseIcon />
          </Icon>
          <DropdownWrapper>
-            <DropdownMenu>
+            <DropDownMenu>
                {menuData?.map(({ link, title }, index) => (
                   <DropdownLink to={link} key={index}>
                      {title}
                   </DropdownLink>
                ))}
-            </DropdownMenu>
+            </DropDownMenu>
             <BtnWrap>
                <Button primary="true" round="true" big="true" to="contact">
                   Contact Us
@@ -38,6 +40,55 @@ const DropdownContainer = styled.section`
    align-items: center;
    opacity: 1;
    transition: 0.3s ease-in-out;
+`;
+
+const Icon = styled.div`
+   position: absolute;
+   top: 1.2rem;
+   right: 1.5rem;
+   font-size: 2rem;
+   background: transparent;
+   cursor: pointer;
+   outline: none;
+`;
+
+const CloseIcon = styled(FaTimes)`
+   color: #000d1a;
+`;
+
+const DropdownWrapper = styled.div``;
+
+const DropDownMenu = styled.div`
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: repeat(4, 80px);
+   text-align: center;
+   margin-bottom: 4rem;
+
+   @media screen and (max-width: 480px) {
+      grid-template-rows: repeat(4, 60px);
+   }
+`;
+
+const DropdownLink = styled(Link)`
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #fff;
+   font-size: 1.5rem;
+   text-decoration: none;
+   list-style: none;
+   cursor: pointer;
+   transition: 0.2s ease-in-out;
+
+   &:hover {
+      color: #000d1a;
+   }
+`;
+
+const BtnWrap = styled.div`
+   display: flex;
+   justify-content: center;
 `;
 
 export default Dropdown;
