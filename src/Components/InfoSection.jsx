@@ -1,18 +1,25 @@
 import styled from 'styled-components';
 import { Button } from '../StyledComponents/Button';
 
-const InfoSection = () => {
+const InfoSection = ({
+   heading,
+   paragraphOne,
+   paragraphTwo,
+   buttonLabel,
+   image,
+   reverse,
+}) => {
    return (
       <Section>
          <Container>
             <ColumnLeft>
-               <h1>heading</h1>
-               <p>paragraph</p>
-               <p>paragraph</p>
-               <Button to="/houses">Label</Button>
+               <h1>{heading}</h1>
+               <p>{paragraphOne}</p>
+               <p>{paragraphTwo}</p>
+               <Button to="/houses">{buttonLabel}</Button>
             </ColumnLeft>
-            <ColumnRight>
-               <img src="" alt="house" />
+            <ColumnRight reverse={reverse}>
+               <img src={image} alt="house" />
             </ColumnRight>
          </Container>
       </Section>
