@@ -4,11 +4,11 @@ import { Button } from '../StyledComponents/Button';
 import { FaBars } from 'react-icons/fa';
 import { menuData } from '../Data/menuData';
 
-const Navbar = () => {
+const Navbar = ({ toggle }) => {
    return (
       <Nav>
          <Logo to="/">ELIXR</Logo>
-         <MenuBars />
+         <MenuBars onClick={toggle} />
          <NavMenu>
             {menuData?.map((item, index) => (
                <NavMenuLink key={index} to={item.link}>
@@ -58,6 +58,7 @@ const MenuBars = styled(FaBars)`
       display: block;
       width: 25px;
       height: 25px;
+      cursor: pointer;
    }
 `;
 

@@ -4,10 +4,10 @@ import { Button } from '../StyledComponents/Button';
 import { FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Dropdown = () => {
+const Dropdown = ({ toggle, isOpen }) => {
    return (
-      <DropdownContainer>
-         <Icon>
+      <DropdownContainer isOpen={isOpen} onClick={toggle}>
+         <Icon onClick={toggle}>
             <CloseIcon />
          </Icon>
          <DropdownWrapper>
@@ -30,7 +30,7 @@ const Dropdown = () => {
 
 const DropdownContainer = styled.section`
    position: fixed;
-   top: 0;
+   top: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
    left: 0;
    z-index: 100;
    width: 100%;
@@ -38,7 +38,7 @@ const DropdownContainer = styled.section`
    background: #cd853f;
    display: grid;
    align-items: center;
-   opacity: 1;
+   opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
    transition: 0.3s ease-in-out;
 `;
 
