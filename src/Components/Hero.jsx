@@ -2,35 +2,54 @@ import styled, { css } from 'styled-components';
 import { Button } from '../StyledComponents/Button';
 import { IoMdArrowRoundForward } from 'react-icons/io';
 import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
+import { useRef, useState } from 'react';
 
 const Hero = ({ slides }) => {
+   const [current, setCurrent] = useState(0);
+   const length = slides.length;
+   const timeout = useRef(null);
+
+   const nextSlide = () => {
+      setCurrent(current === length - 1 ? 0 : current + 1);
+   };
+
+   const prevSlide = () => {
+      setCurrent(current === 0 ? length - 1 : current - 1);
+   };
+
+   if (!Array.isArray(slides) || length <= 0) {
+      return null;
+   }
+
    return (
       <HeroSection>
          <HeroWrapper>
             {slides?.map(({ title, price, path, label, image, alt }, index) => (
                <HeroSlide key={index}>
-                  <HeroSlider>
-                     <HeroImage src={image} alt={alt} />
-                     <HeroContent>
-                        <h1>{title}</h1>
-                        <p>{price}</p>
-                        <Button
-                           to={path}
-                           primary={true}
-                           css={`
-                              max-width: 160px;
-                           `}
-                        >
-                           {label}
-                           <Arrow />
-                        </Button>
-                     </HeroContent>
-                  </HeroSlider>
+                  {index === current && (
+                     <HeroSlider>
+                        <HeroImage src={image} alt={alt} />
+                        <HeroContent>
+                           <h1>{title}</h1>
+                           <p>{price}</p>
+                           <Button
+                              to={path}
+                              primary="true"
+                              css={`
+                                 max-width: 160px;
+                              `}
+                           >
+                              {label}
+                              <Arrow />
+                           </Button>
+                        </HeroContent>
+                     </HeroSlider>
+                  )}
                </HeroSlide>
             ))}
             <SliderButtons>
-               <PrevArrow />
-               <NextArrow />
+               <PrevArrow onClick={prevSlide} />
+               <NextArrow onClick={nextSlide} />
             </SliderButtons>
          </HeroWrapper>
       </HeroSection>
